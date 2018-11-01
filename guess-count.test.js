@@ -10,4 +10,12 @@ describe('<GuessCount />', () => {
 		shallow(<GuessCount />);
 	});
 
+	it('Should render the number of guesses made thus far', () => {
+
+		let TEST_COUNT = 5;
+
+		let wrapper = shallow(<GuessCount guessCount={TEST_COUNT}/>);
+		expect(wrapper.contains(TEST_COUNT)).toBe(true);
+	});
+
 });

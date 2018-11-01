@@ -7,19 +7,22 @@ describe('<GuessList />', () => {
 
 	it('Renders without crashing', () => {
 
-		// The component uses an array, so the test should also
-		// That's why I create one here
+		// The component uses an array, so the test should also		
 		let guess = [1, 2, 3];
 
 		shallow(<GuessList guesses={guess}/>);
 	});
 
-	it("Renders it's child elements", () => {
-
-		let guess = [1, 2, 3];
-		let index = [0, 1, 2];
-		const wrapper = shallow(<GuessList guesses={guess}/>);
-
-		expect(wrapper.contains(<ul id="guessList" className="guessBox clearfix">{guesses}</ul>))to.equal.true;
-	});
+	it('Renders a list of guesses', () => {
+	    
+	    const values = [10, 24, 52];
+	    const wrapper = shallow(<GuessList guesses={values} />);
+	    const items = wrapper.find('li');
+	    
+	    expect(items.length).toEqual(values.length);
+	    
+	    values.forEach((value, index) => {
+	    	expect(items.at(index).text()).toEqual(value.toString())
+    	});
+    });
 });
